@@ -5,7 +5,7 @@ matlab project
 
 clear all; close all; clc
 aceValue=menu('Choose value for ace','1','11'); %Choose the ace value
-value=CardValue(hand,aceValue);
+value=CardValue(hand,aceValue); %Find the value of the hand using the CardValue Function
 %set up deck
 deck=[
 %make jack queen king equal to ten
