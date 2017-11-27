@@ -1,0 +1,14 @@
+function [value]=CardValue(hand,aceValue)
+%double input, single output
+%takes the value of the hand
+
+sum=0;
+for ii=1:length(hand)
+if (hand(ii)==11)|(hand(ii)==12)|(hand(ii)==13)
+hand(ii)=10;
+elseif (hand(ii)==1)
+hand(ii)=aceValue;
+end;
+sum=sum+hand(ii);
+end;
+value=sum;
