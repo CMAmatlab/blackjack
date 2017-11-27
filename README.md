@@ -4,7 +4,8 @@ matlab project
 %Mariah Smith 11/22/17
 
 clear all; close all; clc
-
+aceValue=menu('Choose value for ace','1','11'); %Choose the ace value
+value=CardValue(hand,aceValue);
 %set up deck
 deck=[
 %make jack queen king equal to ten
