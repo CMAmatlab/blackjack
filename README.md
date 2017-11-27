@@ -13,6 +13,7 @@ deck=[
 %give players a starting $1000
 %let players choose bet
 %deal cards
+%Check to see if there is a blackjack using IfBlackJack function
 %let players hit or stand or double down or split
 %if cards are the same value let them split
 %make dealer deal to 16 and stand on 17
