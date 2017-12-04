@@ -5,7 +5,8 @@ clear all; close all; clc
 aceValue=menu('Choose value for ace','1','11'); %Choose the ace value
 value=CardValue(hand,aceValue); %Find the value of the hand using the CardValue Function
 %set up deck
-deck=[
+J=11;Q=12;K=13; A=1;
+deck=[4 4 4 4 4 4 4 4 4 4 4 4 4];
 %make jack queen king equal to ten
 %make ace equal to 1 or 11
 %give players a starting $1000
