@@ -1,18 +1,18 @@
-function [newDeck,newCard]=DrawACard(deck)
+function [newDeck,newHand]=DrawACard(deck,hand)
 %single input, double output
-%Gives a new card, plus the updated deck
+%Gives a new hand with one more card, plus the updated deck
 
 ii=0;
 while (ii==0)
 newCard=randi([1 13]);
-jj=1;
-while(ii==0)
-  if (deck(jj)==newCard)
-  ii=ii+1;
-  deck(jj)=0;
-  end;
-jj=jj+1;
-end;
-end;
 
+if (deck(newCard)~=0)
+  deck(newCard)=deck(newCard)-1;
+  ii=ii+1;
+  else
+  ii=ii;
+end;
+end;
 newDeck=deck;
+hand(length(hand)+1)=newCard;
+newHand=hand;
