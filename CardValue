@@ -1,4 +1,4 @@
-function [value]=CardValue(hand,aceValue)
+function [value]=CardValue(hand)
 %double input, single output
 %takes the value of the hand
 
@@ -7,6 +7,7 @@ for ii=1:length(hand)
 if (hand(ii)==11)|(hand(ii)==12)|(hand(ii)==13)
 hand(ii)=10;
 elseif (hand(ii)==1)
+aceValue=menu('Select Ace Value','1','11');
 hand(ii)=aceValue;
 end;
 sum=sum+hand(ii);
