@@ -1,0 +1,13 @@
+function[Hand, Dealer, Deck]=Deal(nplayer,Deck)
+nplayer=nplayer+1;
+Hand=zeros(nplayer,2);
+for ii=1:nplayer
+    for jj=1:2
+        Hand(ii,jj)=randi([1 13], 1,1);
+        while Deck(1,Hand(ii,jj))==0
+            Hand(ii,jj)=randi([1 13],1,1);
+        end
+        Deck(1,Hand(ii,jj))=Deck(1,Hand(ii,jj))-1;
+    end
+end
+Dealer=Hand(nplayer,1);
