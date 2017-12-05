@@ -2,7 +2,7 @@
 %Mariah Smith 11/22/17
 
 clear all; close all; clc
-aceValue=menu('Choose value for ace','1','11'); %Choose the ace value
+
 value=CardValue(hand,aceValue); %Find the value of the hand using the CardValue Function
 %set up deck
 J=11;Q=12;K=13; A=1;
