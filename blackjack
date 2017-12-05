@@ -3,7 +3,7 @@
 
 clear all; close all; clc
 
-value=CardValue(hand,aceValue); %Find the value of the hand using the CardValue Function
+
 %set up deck
 J=11;Q=12;K=13; A=1;
 deck=[4 4 4 4 4 4 4 4 4 4 4 4 4];
@@ -12,6 +12,7 @@ deck=[4 4 4 4 4 4 4 4 4 4 4 4 4];
 %give players a starting $1000
 %let players choose bet
 %deal cards
+value=CardValue(hand); %Find the value of the hand using the CardValue Function
 %Check to see if there is a blackjack using IfBlackJack function
 %let players hit or stand or double down or split
 %if cards are the same value let them split
