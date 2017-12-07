@@ -1,0 +1,9 @@
+function[newDeck]=reshuffle(hand)
+%single input, single output
+%refreshes the deck minus the cards currently in people's hands
+newDeck=[4,4,4,4,4,4,4,4,4,4,4,4,4];
+for ii=1:length(hand)
+    for jj=1:length(hand)
+        newDeck(hand(ii,jj))=newDeck(hand(ii,jj))-1;
+    end;
+end;
