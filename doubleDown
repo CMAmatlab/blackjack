@@ -1,0 +1,6 @@
+function[newBet,newHand, newDeck]=doubleDown(bet, hand, deck)
+%triple input, triple output
+%doubles your bet, gives you a new card, gives you an updated deck
+
+newBet=bet*2;
+[newDeck,newHand]=DrawACard(deck,hand)
