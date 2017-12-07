@@ -11,3 +11,5 @@ for ii=1:nplayer
     end
 end
 Dealer=Hand(nplayer,1);
+nplayer=nplayer-1;
+Hand=Hand([1:nplayer],:);
