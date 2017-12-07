@@ -1,18 +1,18 @@
-function[x]=CardName(n)
-x=strings(size(n));
-for ii=1:length(n)
-    if n(ii)== 1
-        x(ii)= 'A';
-    elseif n(ii)==10
-        x(ii)='T';
-    elseif n(ii)==11
-        x(ii)='J';
-    elseif n(ii)==12
-        x(ii)='Q';
-    elseif n(ii)==13
-        x(ii)='K';
+function[newhand]=CardName(hand)
+newhand=strings(size(hand));
+for ii=1:length(newhand)
+    if hand(ii)== 1
+        newhand(ii)= 'A';
+    elseif hand(ii)==10
+        newhand(ii)='T';
+    elseif hand(ii)==11
+        newhand(ii)='J';
+    elseif hand(ii)==12
+        newhand(ii)='Q';
+    elseif hand(ii)==13
+        newhand(ii)='K';
     else
-        x(ii)=n(ii);
+        newhand(ii)=hand(ii);
     end
 end
 end
