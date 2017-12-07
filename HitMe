@@ -1,17 +1,12 @@
-function[newDeck,newHand,handValue] = HitMe(deck,hand)
+function[Deck,hand,handValue] = HitMe(Deck,hand)
 %double input,triple output
 %creates a new hand with one more card,an updated deck,and the value of
 %your new hand
+ii=length(hand);
+hand(ii)=randi([1 13], 1,1);
+while Deck(1,hand(ii))==0
+    hand(ii)=randi([1 13],1,1);
+end
+Deck(1,hand(ii))=Deck(1,hand(ii))-1;
 [handValue]=CardValue(hand);
-handVal=handValue;
-while (handVal<=21)
-    display(CardName(hand));
-    hit=menu('Would you like to hit?','Yes','No');
-    if (hit==1)
-    [newDeck,newHand]=DrawACard(deck,hand);
-    [handVal]=CardValue(newHand);
-    handValue=handVal;
-    else
-        handVal=3456789;
-    end;
-end;
+end
