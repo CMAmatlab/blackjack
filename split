@@ -1,0 +1,6 @@
+function [hand1,hand2]=split(hand)
+%single input, double output
+%creates two new hands from one hand
+
+hand1=hand(1,1);
+hand2=hand(1,2);
