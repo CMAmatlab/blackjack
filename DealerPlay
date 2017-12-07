@@ -1,0 +1,13 @@
+function[Dealer, DealerValue, Deck]=DealerPlay(Dealer, Deck)
+[value]=CardValue(Dealer)
+DealerValue=value;
+while DealerValue < 17   
+    q=length(Dealer)+1;
+    Dealer(1,q)=randi([1 13],1,1);
+    while Deck(1,Dealer(1,q))==0
+          Dealer(1,q)=randi([1 13],1,1);
+    end
+        Deck(1,Dealer(1,q))=Deck(1,Dealer(1,q))-1;
+        [value]=CardValue(Dealer);
+        DealerValue=value;
+end
