@@ -7,12 +7,11 @@ for ii=1:length(hand)
 if (hand(ii)==11)|(hand(ii)==12)|(hand(ii)==13)
 hand(ii)=10;
 elseif (hand(ii)==1)
-aceValue=menu('Select Ace Value','1','11');
-if (aceValue==1)
-hand(ii)=aceValue;
-else
-   hand(ii)=11;
-end;
+     if(sum<=10)
+     hand(ii)=11;
+     else
+     hand(ii)=1;
+     end;
 end;
 sum=sum+hand(ii);
 end;
