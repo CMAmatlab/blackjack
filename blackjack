@@ -9,6 +9,7 @@ Deck=[4 4 4 4 4 4 4 4 4 4 4 4 4];
 nplayer=menu("How many players are playing", "1", "2", "3", "4");
 e=1; 
 disp("Welcome to BlackJack!")
+I=menu("Press OK to start","ok")
 %give players a starting $1000
 for ii=1:nplayer
     wallet(ii)=1000;
@@ -19,12 +20,12 @@ while e==1
     %let players choose bet
     money=[10 25 50 100 150 200 250 300 400 500 750 1000];
     for ii=1:nplayer
-        disp("you currently own")
+        fprintf('Player %i currently owns \n',ii)
         disp(wallet(ii))
         b=menu("Choose your bet", "10", "25", "50", "100", "150", "200", "250", "300", "400", "500", "750", "1000");
         bet(ii)=money(b);
         wallet(ii)=wallet(ii)-money(b);
-        disp("you currently own")
+        fprintf('Player %i currently owns \n',ii)
         disp(wallet(ii))
         d=menu("click ok to move on to the next player","ok");
     end
@@ -32,19 +33,20 @@ while e==1
     %Deal
     [Hand, Dealer, Deck]=Deal(nplayer, Deck);
     for ii= 1:(nplayer)  
-        [handname]=CardName(Hand);
+        [handname]=CardName(Hand(ii,:));
+        fprintf('Player %i hand \n',ii)
         disp(handname);
         a=menu("click ok to move on to the next player", "ok");
     end
     [dealerhandname]=CardName(Dealer);
-    disp("dealer's hand")
-    disp(dealerhandname(1,1))
+    disp("Dealer's hand")
+    disp(dealerhandname(1))
     
     %check for blackjack
     for ii=1:nplayer
         [answer]=IsBlackJack(Hand(ii)); 
         if answer==1
-            fprintf('Player %s wins! \n',ii)
+            fprintf('Player %i wins! \n',ii)
             wallet(ii)= wallet(ii)+ 2.25*bet(ii);
             disp("you currently own")
             disp(wallet(ii))
@@ -59,41 +61,123 @@ while e==1
     %let players hit or stand or double down or split
     for ii=1:nplayer
         c=menu("choose to hit, stand, double down, or split", "hit", "stand", "double down", "split");
-        if c==1
+        if c==1 %hit
             f=1;
             while f==1
-                add=zeros((nplayer),1);
-                Hand=[Hand,add];
+                add=zeros(nplayer,1);
+                Hand=[Hand, add];
                 [Deck, Hand(ii,:), handvalue]=HitMe(Deck, Hand(ii,:));
-                disp("your hand is")
+                fprintf('Player %i hand \n',ii)
                 [handname]=CardName(Hand(ii,:));
                 disp(handname);
                     if handvalue > 21
                         f=0;
-                        disp("you busted")
-                        [dealerhandname]=CardName(Dealer);
-                        disp(dealerhandname(1,1))
+                        r=1;
                         continue
-                    elseif handvalue==21
+                    elseif handvalue==21 
                         f=0;
-                        disp("you win!")
                         continue
                     else
                         
                     end
                 f=menu("would you like to hit again?","yes","no");
             end
-            continue
-        elseif c==3
+        elseif c==3 %double down
+            add=zeros(nplayer,1);
+            Hand=[Hand, add];
+            [bet(ii), Hand(ii,:), Deck]=doubleDown(bet(ii),Hand(ii,:), Deck);
+            fprintf('Player %i hand \n',ii)
+            [handname]=CardName(Hand(ii,:));
+            disp(handname)
+        elseif c==4 %split
+            if Hand(ii,1)==Hand(ii,2)
+               newhand=Hand';
+               for ii=1:2
+               [Deck,newhand(ii,:)]=DrawACard(Deck, newhand(ii,:));
+               [handname]=CardName(newhand(ii,:));
+               disp(handname)
+               end
+               c=menu("choose to hit, stand, or double down", "hit", "stand", "double down")
+               %for if split works
+            if c==1 %hit
+                for jj=1:2
+            f=1;
+            while f==1
+                add=zeros(nplayer,1);
+                Hand=[Hand, add];
+                [Deck, Hand(jj,:), handvalue]=HitMe(Deck, Hand(jj,:));
+                disp("your hand is")
+                [handname]=CardName(Hand(jj,:));
+                disp(handname);
+                    if handvalue > 21
+                        f=0;
+                        r=1;
+                        continue
+                    elseif handvalue==21 
+                        f=0;
+                        continue
+                    else
+                        
+                    end
+                f=menu("would you like to hit again?","yes","no");
+            end
+                end
+        elseif c==3 %doubledown
+            bet(ii)=2*bet(ii);
+            for jj=1:2
+                add=zeros(nplayer,1);
+                Hand=[Hand, add];
+                [Deck, Hand(jj,:), handvalue]=HitMe(Deck, Hand(jj,:));
+            end
+            else
+            end
+            %for if split doesnt work
+            elseif Hand(ii,1)~=Hand(ii,2)
+                disp("That is not a valid option")
+                c=menu("choose to hit, stand, double down, or split", "hit", "stand", "double down", "split");
+        if c==1%hit
+            f=1;
+            while f==1
+                add=zeros(nplayer,1);
+                Hand=[Hand, add];
+                [Deck, Hand(ii,:), handvalue]=HitMe(Deck, Hand(ii,:));
+                disp("your hand is")
+                [handname]=CardName(Hand(ii,:));
+                disp(handname);
+                    if handvalue > 21
+                        f=0;
+                        r=1;
+                        continue
+                    elseif handvalue==21 
+                        f=0;
+                        continue
+                    else
+                        
+                    end
+                f=menu("would you like to hit again?","yes","no");
+            end
+        elseif c==3 %doubledown
             [bet(ii), Hand(ii,:), Deck]=doubleDown(bet(ii),Hand(ii,:), Deck);
             [handname]=CardName(Hand(ii,:));
             disp(handname)
-        elseif c==4
-            disp("can't do that yet")
         else
-       
         end
-    end;
+        %end if split doesn't work
+            end
+            %end split
+        
+        else   
+            end
+            
+               
+         %back to the beginning
+                
+            
+       h=menu("click ok to move on to the next player","ok");
+        end 
+        %end all
+        
+    
     
     [Dealer, DealerValue, Deck]=DealerPlay(Dealer, Deck);
     [handname]=CardName(Hand);
@@ -101,18 +185,17 @@ while e==1
     disp("dealer's hand")
     disp(dealerhandname)
     
-    %check for blackjack for players
+    %check for blackjack in players
     for ii=1:nplayer
         [answer]=IsBlackJack(Hand(ii)); 
         if answer==1
-            fprintf('Player %s wins! \n',ii)
+            fprintf('Player %i wins! \n',ii)
             wallet(ii)= wallet(ii)+ 2*bet(ii);
             [dealerhandname]=CardName(Dealer);
             disp(dealerhandname(1,1))
-            disp("you currently own")
+            fprintf('Player %i currently owns \n',ii)
             disp(wallet(ii))
-        else
-      
+        else 
         end
     end
 
@@ -128,25 +211,35 @@ while e==1
 
 
    %lose or no
-
+   r=0;
    for ii=1:nplayer
-        [handvalue(ii)]=CardValue(Hand(ii));
-        if (handvalue(ii)>DealerValue)|(DealerValue>21)
-            disp("you win!")
-            disp(wallet(ii))
+        [handvalue(ii)]=CardValue(Hand(ii,:));
+        if r==1
+           fprintf('Player %i busted! \n',ii)
+            fprintf('Player %i currently owns \n',ii)
+            disp(wallet(ii)) 
+        elseif (handvalue(ii)>DealerValue)|(DealerValue>21)
+            fprintf('Player %i wins! \n',ii)
             wallet(ii)=wallet(ii)+2*bet(ii);
-            disp("you currently own")
+            fprintf('Player %i currently owns \n',ii)
             disp(wallet(ii))
         elseif handvalue(ii)==DealerValue
                 wallet(ii)=wallet(ii)+bet(ii);
-                disp("you currently own")
+                fprintf('Player %i currently owns \n',ii)
                 disp(wallet(ii))
         else
-            disp("you lose")
-            disp("you currently own")
+            fprintf('Player %i loses! \n',ii)
+            fprintf('Player %i currently owns \n',ii)
             disp(wallet(ii))
         end
-    end
+   end
 
+    for ii=nplayer:1
+        if wallet(ii)<= 0
+            nplayer=nplayer-1;
+            fprintf('Player %i has to quit \n',ii)
+        else
+        end
+    end
     e=menu("would you like to continue playing?", "yes", "no");
 end
