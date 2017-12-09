@@ -15,13 +15,16 @@ for ii=1:nplayer
 end
 
 while e==1
+    clc
     %let players choose bet
     money=[10 25 50 100 150 200 250 300 400 500 750 1000];
     for ii=1:nplayer
+        disp("you currently own")
         disp(wallet(ii))
         b=menu("Choose your bet", "10", "25", "50", "100", "150", "200", "250", "300", "400", "500", "750", "1000");
         bet(ii)=money(b);
         wallet(ii)=wallet(ii)-money(b);
+        disp("you currently own")
         disp(wallet(ii))
         d=menu("click ok to move on to the next player","ok");
     end
@@ -43,6 +46,7 @@ while e==1
         if answer==1
             fprintf('Player %s wins! \n',ii)
             wallet(ii)= wallet(ii)+ 2.25*bet(ii);
+            disp("you currently own")
             disp(wallet(ii))
         else
       
@@ -64,13 +68,20 @@ while e==1
                 disp("your hand is")
                 [handname]=CardName(Hand(ii,:));
                 disp(handname);
-                f=menu("would you like to hit again?","yes","no");
                     if handvalue > 21
                         f=0;
                         disp("you busted")
                         [dealerhandname]=CardName(Dealer);
                         disp(dealerhandname(1,1))
+                        continue
+                    elseif handvalue==21
+                        f=0;
+                        disp("you win!")
+                        continue
+                    else
+                        
                     end
+                f=menu("would you like to hit again?","yes","no");
             end
             continue
         elseif c==3
@@ -98,6 +109,7 @@ while e==1
             wallet(ii)= wallet(ii)+ 2*bet(ii);
             [dealerhandname]=CardName(Dealer);
             disp(dealerhandname(1,1))
+            disp("you currently own")
             disp(wallet(ii))
         else
       
@@ -110,7 +122,7 @@ while e==1
     if answer==1
         [dealerhandname]=CardName(Dealer);
         disp(dealerhandname(1,1))
-        disp("you all lose")
+        disp("you lose")
     else
     end
 
@@ -119,16 +131,20 @@ while e==1
 
    for ii=1:nplayer
         [handvalue(ii)]=CardValue(Hand(ii));
-        if (handvalue<21)|(handvalue>DealerValue)
+        if (handvalue(ii)>DealerValue)|(DealerValue>21)
             disp("you win!")
             disp(wallet(ii))
             wallet(ii)=wallet(ii)+2*bet(ii);
+            disp("you currently own")
             disp(wallet(ii))
-        elseif handvalue==DealerValue
+        elseif handvalue(ii)==DealerValue
                 wallet(ii)=wallet(ii)+bet(ii);
+                disp("you currently own")
                 disp(wallet(ii))
         else
             disp("you lose")
+            disp("you currently own")
+            disp(wallet(ii))
         end
     end
 
