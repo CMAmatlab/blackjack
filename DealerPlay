@@ -1,5 +1,5 @@
 function[Dealer, DealerValue, Deck]=DealerPlay(Dealer, Deck)
-[value]=CardValue(Dealer)
+[value]=CardValue(Dealer);
 DealerValue=value;
 while DealerValue < 17   
     q=length(Dealer)+1;
