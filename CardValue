@@ -2,17 +2,27 @@ function [value]=CardValue(hand)
 %double input, single output
 %takes the value of the hand
 
-sum=0;
+value=0;
 for ii=1:length(hand)
-if (hand(ii)==11)|(hand(ii)==12)|(hand(ii)==13)
-hand(ii)=10;
-elseif (hand(ii)==1)
-     if(sum<=10)
-     hand(ii)=11;
-     else
-     hand(ii)=1;
-     end;
+    if (hand(ii)==11)|(hand(ii)==12)|(hand(ii)==13)
+        hand(ii)=10;
+    elseif (hand(ii)==1)
+        hand(ii)=11;
+    else
+        hand(ii)=hand(ii);
+    end;
 end;
-sum=sum+hand(ii);
+
+value=sum(hand);
+
+for ii=1:length(hand)
+    if hand(ii)==11 & value > 21
+        hand(ii)=1;
+    elseif hand(ii)==11 & value <= 21
+        hand(ii)=11;
+    else
+        hand(ii)=hand(ii);
+    end
+    value=sum(hand);
 end;
-value=sum;
+value=sum(hand);
