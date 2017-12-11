@@ -10,9 +10,9 @@ if (deck(newCard)~=0)
   deck(newCard)=deck(newCard)-1;
   ii=ii+1;
   else
-  ii=ii;
-end;
-end;
+  
+end
+end
 newDeck=deck;
 hand(length(hand)+1)=newCard;
 newHand=hand;
