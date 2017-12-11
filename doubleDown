@@ -1,6 +1,12 @@
-function[newBet,newHand, newDeck]=doubleDown(bet, hand, deck)
+function[newBet,hand, Deck]=doubleDown(bet, hand, Deck)
 %triple input, triple output
 %doubles your bet, gives you a new card, gives you an updated deck
 
 newBet=bet*2;
-[newDeck,newHand]=DrawACard(deck,hand)
+
+ii=length(hand)+1;
+hand(ii)=randi([1 13], 1,1);
+while Deck(1,hand(ii))==0
+    hand(ii)=randi([1 13],1,1);
+end
+Deck(1,hand(ii))=Deck(1,hand(ii))-1;
