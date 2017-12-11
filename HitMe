@@ -2,11 +2,18 @@ function[Deck,hand,handValue] = HitMe(Deck,hand)
 %double input,triple output
 %creates a new hand with one more card,an updated deck,and the value of
 %your new hand
-ii=length(hand);
-hand(ii)=randi([1 13], 1,1);
-while Deck(1,hand(ii))==0
-    hand(ii)=randi([1 13],1,1);
+y=nnz(hand);
+x=length(hand);
+newhand=hand(:,[1:y]);
+l=length(newhand)+1;
+newhand(l)=randi([1 13], 1,1);
+while Deck(1,newhand(l))==0
+    newhand(l)=randi([1 13],1,1);
 end
-Deck(1,hand(ii))=Deck(1,hand(ii))-1;
+Deck(1,newhand(l))=Deck(1,newhand(l))-1;
+z=length(newhand);
+w=x-z;
+u=zeros(1,w);
+hand=[newhand, u];
 [handValue]=CardValue(hand);
 end
