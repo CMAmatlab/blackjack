@@ -1,5 +1,12 @@
-function [answer]=IsBlackJack(value)
+function [answer]=IsBlackJack(hand)
 %single input, single output
 %will output a 1 if it is a black jack
+%only use this if aceValue=11
 
-answer=(value==21);
+[value]=CardValue(hand);
+
+if (value==21)
+answer=1;
+else
+answer=0;
+end;
