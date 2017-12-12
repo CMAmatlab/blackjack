@@ -2,6 +2,7 @@ function[Deck,hand,handValue] = HitMe(Deck,hand)
 %double input,triple output
 %creates a new hand with one more card,an updated deck,and the value of
 %your new hand
+
 y=nnz(hand);
 x=length(hand);
 newhand=hand(:,[1:y]);
