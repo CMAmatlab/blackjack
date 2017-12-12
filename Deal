@@ -1,5 +1,7 @@
 function[Hand, Dealer, Deck]=Deal(nplayer,Deck)
-nplayer=nplayer+1;
+%double input, triple output
+
+nplayer=nplayer+1; %add a player for the dealer
 Hand=zeros(nplayer,2);
 for ii=1:nplayer
     for jj=1:2
