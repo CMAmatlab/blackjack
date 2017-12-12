@@ -2,20 +2,20 @@ function [value]=CardValue(hand)
 %double input, single output
 %takes the value of the hand
 
-value=0;
+value=0; %initialize the value
 for ii=1:length(hand)
-    if (hand(ii)==11)|(hand(ii)==12)|(hand(ii)==13)
+    if (hand(ii)==11)|(hand(ii)==12)|(hand(ii)==13) %have face cards equal to ten
         hand(ii)=10;
-    elseif (hand(ii)==1)
+    elseif (hand(ii)==1) %have aces equal 11
         hand(ii)=11;
     else
-        hand(ii)=hand(ii);
+        hand(ii)=hand(ii); %have evrything else equal it's original value
     end
 end
 
-value=sum(hand);
+value=sum(hand); %assign this sum to value
 
-for ii=1:length(hand)
+for ii=1:length(hand) %now assign the aces to 1 or 11 based on if the value is over 21
     if hand(ii)==11 & value > 21
         hand(ii)=1;
     elseif hand(ii)==11 & value <= 21
