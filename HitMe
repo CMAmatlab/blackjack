@@ -2,17 +2,23 @@ function[Deck,hand,handValue] = HitMe(Deck,hand)
 %double input,triple output
 %creates a new hand with one more card,an updated deck,and the value of
 %your new hand
-
+%find the number of non zeros numbers in the hand
 y=nnz(hand);
+%save the length of hand
 x=length(hand);
+%make new hand that is the all of the numbers in the hand that aren't zero
 newhand=hand(:,[1:y]);
+%place new card in the next zero place
 l=length(newhand)+1;
+%draw card
 newhand(l)=randi([1 13], 1,1);
 while Deck(1,newhand(l))==0
     newhand(l)=randi([1 13],1,1);
 end
 Deck(1,newhand(l))=Deck(1,newhand(l))-1;
+%make sure that the hand is the same length as the rest of the hands
 z=length(newhand);
+%adding zero to end if necessary
 w=x-z;
 u=zeros(1,w);
 hand=[newhand, u];
