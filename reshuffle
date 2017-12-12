@@ -2,9 +2,9 @@ function[newDeck]=reshuffle(hand)
 %single input, single output
 %refreshes the deck minus the cards currently in people's hands
 
-newDeck=[4,4,4,4,4,4,4,4,4,4,4,4,4]; %assign a new deck
-for ii=1:length(hand) %loop throughout the hand
+newDeck=[4,4,4,4,4,4,4,4,4,4,4,4,4]; %Define new deck
+for ii=1:length(hand) %scan current hands
     for jj=1:length(hand)
-        newDeck(hand(ii,jj))=newDeck(hand(ii,jj))-1; %remove cards from the new deck that are currently being used in hands
+        newDeck(hand(ii,jj))=newDeck(hand(ii,jj))-1; %subtract those cards from the new deck
     end;
 end;
