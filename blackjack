@@ -263,7 +263,9 @@ while e==1
         if (r(ii)==1)|(handvalue(ii)>21)
            fprintf('Player %i busted! \n',ii)
             fprintf('Player %i currently owns \n',ii)
-            disp(wallet(ii)) 
+            disp(wallet(ii))
+            %from winning blackjack
+        elseif r(ii)==3
 %if the handvalue is greater than dealer but less than 21
         elseif (handvalue(ii)>DealerValue)|(DealerValue>21)|r(ii)==2
             fprintf('Player %i wins! \n',ii)
@@ -275,8 +277,6 @@ while e==1
                 wallet(ii)=wallet(ii)+bet(ii);
                 fprintf('Player %i currently owns \n',ii)
                 disp(wallet(ii))
-%from winning blackjack
-        elseif r(ii)==3
  %everything else
         else
             fprintf('Player %i loses! \n',ii)
