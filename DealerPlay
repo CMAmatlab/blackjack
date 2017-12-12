@@ -1,4 +1,6 @@
 function[Dealer, DealerValue, Deck]=DealerPlay(Dealer, Deck)
+%double input, triple output
+
 [value]=CardValue(Dealer);
 DealerValue=value;
 while DealerValue < 17   
