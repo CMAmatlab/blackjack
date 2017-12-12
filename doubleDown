@@ -2,7 +2,7 @@ function[newBet,hand, Deck]=doubleDown(bet, hand, Deck)
 %triple input, triple output
 %doubles your bet, gives you a new card, gives you an updated deck
 
-newBet=bet*2;
+newBet=bet*2; %double the bet
 
-[Deck, hand,handvalue]=HitMe(Deck,hand);
+[Deck, hand,handvalue]=HitMe(Deck,hand); %use the hit me function to add another card
 
