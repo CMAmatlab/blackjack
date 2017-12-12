@@ -4,9 +4,5 @@ function[newBet,hand, Deck]=doubleDown(bet, hand, Deck)
 
 newBet=bet*2;
 
-ii=length(hand)+1;
-hand(ii)=randi([1 13], 1,1);
-while Deck(1,hand(ii))==0
-    hand(ii)=randi([1 13],1,1);
-end
-Deck(1,hand(ii))=Deck(1,hand(ii))-1;
+[Deck, hand,handvalue]=HitMe(Deck,hand);
+
