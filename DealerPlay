@@ -6,7 +6,6 @@ DealerValue=value;
 while DealerValue < 17   
     q=length(Dealer)+1;
     Dealer(1,q)=randi([1 13],1,1);
-    [dealerhandname]=CardName(Dealer);
     while Deck(1,Dealer(1,q))==0
           Dealer(1,q)=randi([1 13],1,1);
     end
