@@ -1,12 +1,12 @@
 function [answer]=IsBlackJack(hand)
 %single input, single output
 %will output a 1 if it is a black jack
-%only use this if aceValue=11
 
-[value]=CardValue(hand);
 
-if (value==21)
+[value]=CardValue(hand); %check the value of the hand
+
+if (value==21) %if the value of the hand is 21(blackjack), answer is 1
 answer=1;
 else
-answer=0;
+answer=0; %if not, then the answer is zero
 end;
