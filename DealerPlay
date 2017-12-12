@@ -1,15 +1,21 @@
 function[Dealer, DealerValue, Deck]=DealerPlay(Dealer, Deck)
-%double input, triple output
-
+%find the card value of dealer
 [value]=CardValue(Dealer);
 DealerValue=value;
+%as long as the dealer value is less than 17 keeping drawing card
 while DealerValue < 17   
+    %to add a card to the end of the dealer hand
     q=length(Dealer)+1;
+    %draw card
     Dealer(1,q)=randi([1 13],1,1);
     while Deck(1,Dealer(1,q))==0
           Dealer(1,q)=randi([1 13],1,1);
     end
         Deck(1,Dealer(1,q))=Deck(1,Dealer(1,q))-1;
-        [value]=CardValue(Dealer);
-        DealerValue=value;
+        %find value again
+        [DealerValue]=CardValue(Dealer);
+        %end the while loop when it gets to 17 or greater
+        if DealerValue >= 17
+            continue
+        end
 end
