@@ -10,7 +10,7 @@ Deck=[4 4 4 4 4 4 4 4 4 4 4 4 4];
 nplayer=menu("How many players are playing", "1", "2", "3", "4");
 e=1; 
 disp("Welcome to BlackJack!")
-I=menu("Press OK to start","ok")
+I=menu("Press OK to start","ok");
 
 %give players a starting $1000
 for ii=1:nplayer
@@ -199,29 +199,19 @@ while e==1
         %end if split doesn't work
             end
             %end split
-        if(nplayer>1)
-            h=menu("click ok to move on to the next player","ok");
-            if h~=1
-                t=3;
-            else
-            end
         end
 
-end
+
         else
             if(nplayer>1)
             h=menu("click ok to move on to the next player","ok");
-            
             end
         end
-        
-        
-            
-       end
-       
-        
-        
-    
+        if(nplayer>1)
+            h=menu("click ok to move on to the next player","ok");
+        end
+    end
+
     %dealer plays
     
     [Dealer, DealerValue, Deck]=DealerPlay(Dealer, Deck);
@@ -296,5 +286,5 @@ end
 
         end
     end
-    
+
 end
