@@ -1,6 +1,8 @@
 function[newhand]=CardName(hand)
-newhand=strings(size(hand));
-for ii=1:length(newhand)
+%single input, single output
+
+newhand=strings(size(hand)); %Define a new string
+for ii=1:length(newhand) %run a loop to rename face cards, tens, and aces
     if hand(ii)== 1
         newhand(ii)= 'A';
     elseif hand(ii)==10
