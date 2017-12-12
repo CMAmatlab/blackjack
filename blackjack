@@ -83,9 +83,13 @@ while e==1
         if c==1
             f=1;
             while f==1
-	%add another line of zeros at end for everyone so that matrices matach
+	%add another line of zeros at end for everyone so that matrices match
                 add=zeros(nplayer,1);
                 Hand=[Hand, add];
+		%Check to see if the deck needs to be reshuffled
+		if (Deck==[0,0,0,0,0,0,0,0,0,0,0,0,0])
+		Deck=resuffle(Hand)
+		end;
                 [Deck, Hand(ii,:), handvalue]=HitMe(Deck, Hand(ii,:));
 	%display current hand
                 fprintf('Player %i hand \n',ii)
@@ -116,7 +120,7 @@ while e==1
             disp(handname)
 %split
         elseif c==4 
-%check if slit is possible
+%check if split is possible
             if Hand(ii,1)==Hand(ii,2) %need to change to if the value of hand is equal not this
 %redeal their hand %need to add on at end for how to check if the won or not
                newhand=Hand';
@@ -213,7 +217,10 @@ while e==1
     end
 
     %dealer plays
-    
+    %Check to see if the deck needs to be reshuffled
+		if (Deck==[0,0,0,0,0,0,0,0,0,0,0,0,0])
+		Deck=resuffle(Hand)
+		end;
     [Dealer, DealerValue, Deck]=DealerPlay(Dealer, Deck);
     [handname]=CardName(Hand);
     [dealerhandname]=CardName(Dealer); 
