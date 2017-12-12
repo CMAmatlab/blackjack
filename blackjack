@@ -32,6 +32,7 @@ while e==1
         bet(ii)=money(b);
         wallet(ii)=wallet(ii)-money(b);
         p=1;
+        %don't allow player to bet if they don't have enough money
         while p==1
         if wallet(ii)<0
             wallet(ii)=wallet(ii)+money(b);
@@ -69,7 +70,7 @@ while e==1
     disp("Dealer's hand")
     disp(dealerhandname(1))
     
-    %check for blackjack%need to edit
+    %check for blackjack
     for ii=1:nplayer
         [answer]=IsBlackJack(Hand(ii,:)); 
         if answer==1
@@ -83,9 +84,6 @@ while e==1
            
         end
     end
-
-    
-      
 
     %let players hit or stand or double down or split
     
@@ -116,7 +114,7 @@ while e==1
                     end 
             end
         
-%double down %need to edit
+%double down 
         elseif c==3 
 %to keep matrix same like hit me
             add=zeros(nplayer,1);
@@ -133,7 +131,7 @@ while e==1
             if Hand(ii,1)==Hand(ii,2) %need to change to if the value of hand is equal not this
 %redeal their hand %need to add on at end for how to check if the won or not
                newhand=Hand';
-%display new hand %need to work out logistics
+%display new hand 
                for ii=1:2
                [Deck,newhand(ii,:)]=DrawACard(Deck, newhand(ii,:));
                [handname]=CardName(newhand(ii,:));
@@ -145,7 +143,7 @@ while e==1
          if c==1
             f=1;
             while f==1
-	%add another line of zeros at end for everyone so that matrices matach
+	%add another line of zeros at end for everyone so that matrices match
                 add=zeros(nplayer,1);
                 Hand=[Hand, add];
                 [Deck, Hand(ii,:), handvalue]=HitMe(Deck, Hand(ii,:));
@@ -228,7 +226,6 @@ while e==1
     %dealer plays
     
     [Dealer, DealerValue, Deck]=DealerPlay(Dealer, Deck);
-    [handname]=CardName(Hand);
     [dealerhandname]=CardName(Dealer); 
     disp("dealer's hand")
     disp(dealerhandname)
@@ -258,10 +255,10 @@ while e==1
 %     end
 
 
-   %lose or no%definately need to edit
+   %lose or no
 
    for ii=1:nplayer
-%r=1 is for when the player was hitting need to edit that
+%from the hit me function
         [handvalue(ii)]=CardValue(Hand(ii,:));
         if (r(ii)==1)|(handvalue(ii)>21)
            fprintf('Player %i busted! \n',ii)
@@ -278,9 +275,9 @@ while e==1
                 wallet(ii)=wallet(ii)+bet(ii);
                 fprintf('Player %i currently owns \n',ii)
                 disp(wallet(ii))
-%everything else %should edit
+%from winning blackjack
         elseif r(ii)==3
- 
+ %everything else
         else
             fprintf('Player %i loses! \n',ii)
             fprintf('Player %i currently owns \n',ii)
@@ -300,3 +297,7 @@ while e==1
     end
 
 end
+
+disp("Thank you for playing")
+
+disp("A plz? purrty plz? We're tired")
