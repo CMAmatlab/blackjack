@@ -1,17 +1,22 @@
 function[Hand, Dealer, Deck]=Deal(nplayer,Deck)
-%double input, triple output
-
-nplayer=nplayer+1; %add a player for the dealer
+%add another player to represent the dealer
+nplayer=nplayer+1;
+%make a matrix for the hand with zeros
 Hand=zeros(nplayer,2);
-for ii=1:nplayer
-    for jj=1:2
+for ii=1:2
+    for jj=1:nplayer
+        %assign a card to the position it is at
         Hand(ii,jj)=randi([1 13], 1,1);
+        %make sure that that card exists
         while Deck(1,Hand(ii,jj))==0
             Hand(ii,jj)=randi([1 13],1,1);
         end
         Deck(1,Hand(ii,jj))=Deck(1,Hand(ii,jj))-1;
     end
 end
+%assign dealer's hand
 Dealer=Hand(nplayer,1);
+%resent everything
 nplayer=nplayer-1;
+%make sure hand is good
 Hand=Hand([1:nplayer],:);
