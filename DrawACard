@@ -2,17 +2,17 @@ function [newDeck,newHand]=DrawACard(deck,hand)
 %single input, double output
 %Gives a new hand with one more card, plus the updated deck
 
-ii=0;
+ii=0; %initialize counter
 while (ii==0)
-newCard=randi([1 13]);
+newCard=randi([1 13]); %pull a random card
 
-if (deck(newCard)~=0)
-  deck(newCard)=deck(newCard)-1;
-  ii=ii+1;
+if (deck(newCard)~=0) %make sure the card is in the deck
+  deck(newCard)=deck(newCard)-1; %if the card is in the deck, subract it from the deck
+  ii=ii+1; %get out of the loop
   else
   
 end
 end
-newDeck=deck;
-hand(length(hand)+1)=newCard;
-newHand=hand;
+newDeck=deck; %assign the updated deck
+hand(length(hand)+1)=newCard; %add the new card to the hand
+newHand=hand; %assign the new hand
