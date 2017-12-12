@@ -31,6 +31,19 @@ while e==1
         b=menu("Choose your bet", "10", "25", "50", "100", "150", "200", "250", "300", "400", "500", "750", "1000");
         bet(ii)=money(b);
         wallet(ii)=wallet(ii)-money(b);
+        p=1;
+        while p==1
+        if wallet(ii)<0
+            wallet(ii)=wallet(ii)+money(b);
+            disp("you do not have enough money for that")
+            b=menu("Choose your bet", "10", "25", "50", "100", "150", "200", "250", "300", "400", "500", "750", "1000");
+            bet(ii)=money(b);
+            wallet(ii)=wallet(ii)-money(b);
+            p=1;
+        else
+            p=0;
+        end
+        end
         %shows new wallet
         fprintf('Player %i currently owns \n',ii)
         disp(wallet(ii))
@@ -274,16 +287,15 @@ while e==1
             disp(wallet(ii))
         end
    end
-            e=menu("would you like to continue playing?", "yes", "no");
+         e=menu("would you like to continue playing?", "yes", "no");   
 %for if you run out of money
     for ii=nplayer:1
         if wallet(ii)<= 0
             nplayer=nplayer-1;
             fprintf('Player %i has to quit \n',ii)
-           nplayer=nplayer-1;
-           e=0;
+            e=0;
         else
-
+            
         end
     end
 
